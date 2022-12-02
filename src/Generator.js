@@ -5,7 +5,8 @@ import Input from "@mui/material/Input";
 
 const Generator = () => {
   const [password, setpassword] = useState("");
-  const [value, setValue] = useState(30);
+  const [checked, setchecked] = useState(false);
+  const [value, setValue] = useState(10);
 
   const alphabetUpper = [
     "A",
@@ -54,6 +55,14 @@ const Generator = () => {
       setValue(30);
     }
   };
+
+  const handleUpperCase = () => {};
+
+  const handleLowerCase = () => {};
+
+  const handleSymbols = () => {};
+
+  const handleNumbers = () => {};
   return (
     <div className="box">
       <h2>Password Generator</h2>
@@ -71,7 +80,6 @@ const Generator = () => {
             min: 0,
             max: 30,
             type: "number",
-            "aria-labelledby": "input-slider",
           }}
         />
       </div>
@@ -79,23 +87,45 @@ const Generator = () => {
         <script src="range-input.js"></script>
         <Slider
           value={typeof value === "number" ? value : 0}
+          min={0}
+          max={30}
           onChange={handleSliderChange}
           aria-labelledby="input-slider"
         />
         <div>
-          <input type="checkbox" id="upper"></input>
+          <input
+            type="checkbox"
+            id="upper"
+            onChange={handleUpperCase}
+            defaultChecked={checked}
+          ></input>
           <label>Include Uppercase Letters</label>
         </div>
         <div>
-          <input type="checkbox" id="lower"></input>
+          <input
+            type="checkbox"
+            id="lower"
+            onChange={handleLowerCase}
+            defaultChecked={checked}
+          ></input>
           <label>Include Lowercase Letters</label>
         </div>
         <div>
-          <input type="checkbox" id="numbers"></input>
+          <input
+            type="checkbox"
+            id="numbers"
+            onChange={handleSymbols}
+            defaultChecked={checked}
+          ></input>
           <label>Include Numbers</label>
         </div>
         <div>
-          <input type="checkbox" id="symbols"></input>
+          <input
+            type="checkbox"
+            id="symbols"
+            onChange={handleNumbers}
+            defaultChecked={checked}
+          ></input>
           <label>Include Symbols</label>
         </div>
         <div className="password-strength">
