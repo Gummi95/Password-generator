@@ -8,7 +8,7 @@ const Generator = () => {
   const [checked, setchecked] = useState(false);
   const [value, setValue] = useState(10);
 
-  const alphabetUpper = [
+  const alphabet = [
     "A",
     "B",
     "C",
@@ -56,18 +56,37 @@ const Generator = () => {
     }
   };
 
-  const handleUpperCase = () => {};
+  const getRandomNumber = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
 
-  const handleLowerCase = () => {};
+  const handlePasswordlenght = () => {};
 
-  const handleSymbols = () => {};
+  const handleUpperCase = () => {
+    const index = getRandomNumber(0, 25);
+    return alphabet[index];
+  };
+  const handleLowerCase = () => {
+    const index = getRandomNumber(0, 25);
+    return alphabet[index].toLocaleLowerCase();
+  };
 
-  const handleNumbers = () => {};
+  const handleSymbols = () => {
+    const index = getRandomNumber(0, 8);
+    return symbols[index];
+  };
+
+  const handleNumbers = () => {
+    const index = getRandomNumber(0, 9);
+    return numbers[index];
+  };
   return (
     <div className="box">
       <h2>Password Generator</h2>
       <div className="password-results">
-        <h3>ghghghghg</h3>
+        <h3>{password}</h3>
       </div>
       <div className="password-param-col">
         <p>Charecter Length</p>
