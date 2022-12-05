@@ -6,7 +6,7 @@ import Input from "@mui/material/Input";
 const Generator = () => {
   const [password, setpassword] = useState("");
   const [checked, setchecked] = useState(false);
-  const [value, setValue] = useState(10);
+  const [sliderValue, setSliderValue] = useState(10);
 
   const alphabet = [
     "A",
@@ -41,18 +41,18 @@ const Generator = () => {
   const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
   const handleSliderChange = (event, newValue) => {
-    setValue(newValue);
+    setSliderValue(newValue);
   };
 
   const handleInputChange = (event) => {
-    setValue(event.target.value === "" ? "" : Number(event.target.value));
+    setSliderValue(event.target.value === "" ? "" : Number(event.target.value));
   };
 
   const handleBlur = () => {
-    if (value < 0) {
-      setValue(0);
-    } else if (value > 30) {
-      setValue(30);
+    if (sliderValue < 0) {
+      setSliderValue(0);
+    } else if (sliderValue > 30) {
+      setSliderValue(30);
     }
   };
 
@@ -62,25 +62,45 @@ const Generator = () => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  const handlePasswordlenght = () => {};
+  const handlePasswordlenght = () => {
+    let password = "";
+    for (let i = 0; i < sliderValue; i++) {
+      const index = getRandomNumber(0, 3);
+      if (index == 0) {
+        let upperLetter = handleUpperCase();
+        upperLetter += password;
+        console.log("pass", password);
+      } else if (index == 1) {
+        handleLowerCase();
+      } else if (index == 2) {
+        handleSymbols();
+      } else if (index == 3) {
+        handleNumbers();
+      }
+    }
+  };
 
   const handleUpperCase = () => {
     const index = getRandomNumber(0, 25);
+    console.log(alphabet[index]);
     return alphabet[index];
   };
   const handleLowerCase = () => {
     const index = getRandomNumber(0, 25);
+    console.log(alphabet[index].toLocaleLowerCase());
     return alphabet[index].toLocaleLowerCase();
   };
 
   const handleSymbols = () => {
     const index = getRandomNumber(0, 8);
+    console.log(symbols[index]);
     return symbols[index];
   };
 
   const handleNumbers = () => {
-    const index = getRandomNumber(0, 9);
-    return numbers[index];
+    const index = getRandomNumber(0, 8);
+    console.log(numbers[index]);
+    return numbers[index].toString;
   };
   return (
     <div className="box">
@@ -91,7 +111,7 @@ const Generator = () => {
       <div className="password-param-col">
         <p>Charecter Length</p>
         <Input
-          value={value}
+          value={sliderValue}
           size="small"
           onChange={handleInputChange}
           onBlur={handleBlur}
@@ -105,7 +125,7 @@ const Generator = () => {
       <div className="password-col">
         <script src="range-input.js"></script>
         <Slider
-          value={typeof value === "number" ? value : 0}
+          value={typeof sliderValue === "number" ? sliderValue : 0}
           min={0}
           max={30}
           onChange={handleSliderChange}
@@ -147,6 +167,7 @@ const Generator = () => {
           ></input>
           <label>Include Symbols</label>
         </div>
+        <button onClick={handlePasswordlenght}>Geenerate Password</button>
         <div className="password-strength">
           <p>Strength</p>
         </div>
