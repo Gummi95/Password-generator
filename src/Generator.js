@@ -63,20 +63,23 @@ const Generator = () => {
   };
 
   const handlePasswordlenght = () => {
-    let password = "";
+    let passwordList = [];
     for (let i = 0; i < sliderValue; i++) {
       const index = getRandomNumber(0, 3);
       if (index == 0) {
         let upperLetter = handleUpperCase();
-        upperLetter += password;
-        console.log("pass", password);
+        passwordList.push(upperLetter);
       } else if (index == 1) {
-        handleLowerCase();
+        let lowerLetter = handleLowerCase();
+        passwordList.push(lowerLetter);
       } else if (index == 2) {
-        handleSymbols();
+        let symbol = handleSymbols();
+        passwordList.push(symbol);
       } else if (index == 3) {
-        handleNumbers();
+        let numb = handleNumbers();
+        passwordList.push(numb);
       }
+      setpassword(passwordList.join(""));
     }
   };
 
@@ -100,7 +103,7 @@ const Generator = () => {
   const handleNumbers = () => {
     const index = getRandomNumber(0, 8);
     console.log(numbers[index]);
-    return numbers[index].toString;
+    return numbers[index].toString();
   };
   return (
     <div className="box">
