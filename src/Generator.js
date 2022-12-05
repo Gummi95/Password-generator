@@ -5,7 +5,11 @@ import Input from "@mui/material/Input";
 
 const Generator = () => {
   const [password, setpassword] = useState("");
-  const [checked, setchecked] = useState(false);
+  const [checkedUpper, setcheckedUpper] = useState(false);
+  const [checkedLower, setcheckedLower] = useState(false);
+  const [checkedSymbol, setcheckedsymbol] = useState(false);
+  const [checkedNumber, setcheckedNumber] = useState(false);
+
   const [sliderValue, setSliderValue] = useState(10);
 
   const alphabet = [
@@ -55,6 +59,8 @@ const Generator = () => {
       setSliderValue(30);
     }
   };
+
+  const handleCheckboxChanger = () => {};
 
   const getRandomNumber = (min, max) => {
     min = Math.ceil(min);
@@ -137,8 +143,9 @@ const Generator = () => {
         <div>
           <input
             type="checkbox"
+            value={checkedUpper}
             id="upper"
-            onChange={handleUpperCase}
+            onChange={handleCheckboxChanger}
             defaultChecked={checked}
           ></input>
           <label>Include Uppercase Letters</label>
@@ -146,8 +153,9 @@ const Generator = () => {
         <div>
           <input
             type="checkbox"
+            value={checkedLower}
             id="lower"
-            onChange={handleLowerCase}
+            onChange={handleCheckboxChanger}
             defaultChecked={checked}
           ></input>
           <label>Include Lowercase Letters</label>
@@ -155,8 +163,9 @@ const Generator = () => {
         <div>
           <input
             type="checkbox"
+            value={checkedNumber}
             id="numbers"
-            onChange={handleSymbols}
+            onChange={handleCheckboxChanger}
             defaultChecked={checked}
           ></input>
           <label>Include Numbers</label>
@@ -164,8 +173,9 @@ const Generator = () => {
         <div>
           <input
             type="checkbox"
+            value={checkedSymbol}
             id="symbols"
-            onChange={handleNumbers}
+            onChange={handleCheckboxChanger}
             defaultChecked={checked}
           ></input>
           <label>Include Symbols</label>
