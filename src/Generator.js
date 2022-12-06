@@ -66,7 +66,8 @@ const Generator = () => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  const handlePasswordlenght = () => {
+  const handlePassword = (e) => {
+    e.preventDefault();
     let passwordList = [];
     while (passwordList.length < sliderValue) {
       const index = getRandomNumber(0, 3);
@@ -89,7 +90,12 @@ const Generator = () => {
       }
     }
     setpassword(passwordList.join(""));
+    setcheckedLower(false);
+    setcheckedUpper(false);
+    setcheckedNumber(false);
+    setcheckedsymbol(false);
   };
+  console.log(checkedUpper, checkedLower, checkedSymbol, checkedNumber);
 
   const handleUpperCase = () => {
     setcheckedUpper(!checkedUpper);
@@ -148,47 +154,49 @@ const Generator = () => {
           onChange={handleSliderChange}
           aria-labelledby="input-slider"
         />
-        <div>
-          <input
-            type="checkbox"
-            value={checkedUpper}
-            id="upper"
-            onChange={handleUpperCase}
-            defaultChecked={checkedUpper}
-          ></input>
-          <label>Include Uppercase Letters</label>
-        </div>
-        <div>
-          <input
-            type="checkbox"
-            value={checkedLower}
-            id="lower"
-            onChange={handleLowerCase}
-            defaultChecked={checkedLower}
-          ></input>
-          <label>Include Lowercase Letters</label>
-        </div>
-        <div>
-          <input
-            type="checkbox"
-            value={checkedNumber}
-            id="numbers"
-            onChange={handleNumbers}
-            defaultChecked={checkedNumber}
-          ></input>
-          <label>Include Numbers</label>
-        </div>
-        <div>
-          <input
-            type="checkbox"
-            value={checkedSymbol}
-            id="symbols"
-            onChange={handleSymbols}
-            defaultChecked={checkedSymbol}
-          ></input>
-          <label>Include Symbols</label>
-        </div>
-        <button onClick={handlePasswordlenght}>Geenerate Password</button>
+        <form onSubmit={handlePassword}>
+          <div>
+            <input
+              type="checkbox"
+              value={checkedUpper}
+              id="upper"
+              onChange={handleUpperCase}
+              checked={checkedUpper}
+            ></input>
+            <label>Include Uppercase Letters</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              value={checkedLower}
+              id="lower"
+              onChange={handleLowerCase}
+              checked={checkedLower}
+            ></input>
+            <label>Include Lowercase Letters</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              value={checkedNumber}
+              id="numbers"
+              onChange={handleNumbers}
+              checked={checkedNumber}
+            ></input>
+            <label>Include Numbers</label>
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              value={checkedSymbol}
+              id="symbols"
+              onChange={handleSymbols}
+              checked={checkedSymbol}
+            ></input>
+            <label>Include Symbols</label>
+          </div>
+          <button>Generate Password</button>
+        </form>
         <div className="password-strength">
           <p>Strength</p>
         </div>
