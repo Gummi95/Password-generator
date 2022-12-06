@@ -60,8 +60,6 @@ const Generator = () => {
     }
   };
 
-  const handleCheckboxChanger = () => {};
-
   const getRandomNumber = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -70,47 +68,57 @@ const Generator = () => {
 
   const handlePasswordlenght = () => {
     let passwordList = [];
-    for (let i = 0; i < sliderValue; i++) {
+    while (passwordList.length < sliderValue) {
       const index = getRandomNumber(0, 3);
-      if (index == 0) {
+      if (index === 0 && checkedUpper === true) {
         let upperLetter = handleUpperCase();
         passwordList.push(upperLetter);
-      } else if (index == 1) {
+        console.log("upper", passwordList);
+      } else if (index === 1 && checkedLower === true) {
         let lowerLetter = handleLowerCase();
         passwordList.push(lowerLetter);
-      } else if (index == 2) {
+        console.log("lower", passwordList);
+      } else if (index === 2 && checkedSymbol === true) {
         let symbol = handleSymbols();
         passwordList.push(symbol);
-      } else if (index == 3) {
+        console.log("symbols", passwordList);
+      } else if (index === 3 && checkedNumber === true) {
         let numb = handleNumbers();
         passwordList.push(numb);
+        console.log("numbers", passwordList);
       }
-      setpassword(passwordList.join(""));
     }
+    setpassword(passwordList.join(""));
   };
 
   const handleUpperCase = () => {
+    setcheckedUpper(!checkedUpper);
+    console.log("checkedUpper", checkedUpper);
     const index = getRandomNumber(0, 25);
-    console.log(alphabet[index]);
     return alphabet[index];
   };
+
   const handleLowerCase = () => {
+    setcheckedLower(!checkedLower);
+    console.log("checkedLower", checkedLower);
     const index = getRandomNumber(0, 25);
-    console.log(alphabet[index].toLocaleLowerCase());
     return alphabet[index].toLocaleLowerCase();
   };
 
   const handleSymbols = () => {
+    setcheckedsymbol(!checkedSymbol);
+    console.log("checkedSymbol", checkedSymbol);
     const index = getRandomNumber(0, 8);
-    console.log(symbols[index]);
     return symbols[index];
   };
 
   const handleNumbers = () => {
+    setcheckedNumber(!checkedNumber);
+    console.log("checkedNumber", checkedNumber);
     const index = getRandomNumber(0, 8);
-    console.log(numbers[index]);
     return numbers[index].toString();
   };
+
   return (
     <div className="box">
       <h2>Password Generator</h2>
@@ -145,8 +153,8 @@ const Generator = () => {
             type="checkbox"
             value={checkedUpper}
             id="upper"
-            onChange={handleCheckboxChanger}
-            defaultChecked={checked}
+            onChange={handleUpperCase}
+            defaultChecked={checkedUpper}
           ></input>
           <label>Include Uppercase Letters</label>
         </div>
@@ -155,8 +163,8 @@ const Generator = () => {
             type="checkbox"
             value={checkedLower}
             id="lower"
-            onChange={handleCheckboxChanger}
-            defaultChecked={checked}
+            onChange={handleLowerCase}
+            defaultChecked={checkedLower}
           ></input>
           <label>Include Lowercase Letters</label>
         </div>
@@ -165,8 +173,8 @@ const Generator = () => {
             type="checkbox"
             value={checkedNumber}
             id="numbers"
-            onChange={handleCheckboxChanger}
-            defaultChecked={checked}
+            onChange={handleNumbers}
+            defaultChecked={checkedNumber}
           ></input>
           <label>Include Numbers</label>
         </div>
@@ -175,8 +183,8 @@ const Generator = () => {
             type="checkbox"
             value={checkedSymbol}
             id="symbols"
-            onChange={handleCheckboxChanger}
-            defaultChecked={checked}
+            onChange={handleSymbols}
+            defaultChecked={checkedSymbol}
           ></input>
           <label>Include Symbols</label>
         </div>
