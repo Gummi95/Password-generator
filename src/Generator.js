@@ -1,6 +1,8 @@
 import "./Generator.css";
 import React, { useState } from "react";
 import Slider from "@mui/material/Slider";
+import { styled } from "@mui/material/styles";
+import ContentPasteIcon from "@mui/icons-material/ContentPaste";
 import Input from "@mui/material/Input";
 
 const Generator = () => {
@@ -9,8 +11,46 @@ const Generator = () => {
   const [checkedLower, setcheckedLower] = useState(false);
   const [checkedSymbol, setcheckedsymbol] = useState(false);
   const [checkedNumber, setcheckedNumber] = useState(false);
-
   const [sliderValue, setSliderValue] = useState(10);
+
+  const LengthSlider = styled(Slider)({
+    color: "#52af77",
+    height: 8,
+    "& .MuiSlider-track": {
+      border: "none",
+    },
+    "& .MuiSlider-thumb": {
+      height: 24,
+      width: 24,
+      backgroundColor: "#fff",
+      border: "2px solid currentColor",
+      "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
+        boxShadow: "inherit",
+      },
+      "&:before": {
+        display: "none",
+      },
+    },
+    "& .MuiSlider-input-slider": {
+      lineHeight: 1.2,
+      fontSize: 12,
+      background: "unset",
+      padding: 0,
+      width: 32,
+      height: 32,
+      borderRadius: "50% 50% 50% 0",
+      backgroundColor: "#52af77",
+      transformOrigin: "bottom left",
+      transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
+      "&:before": { display: "none" },
+      "&.MuiSlider-input-sliderOpen": {
+        transform: "translate(50%, -100%) rotate(-45deg) scale(1)",
+      },
+      "& > *": {
+        transform: "rotate(45deg)",
+      },
+    },
+  });
 
   const alphabet = [
     "A",
@@ -74,19 +114,15 @@ const Generator = () => {
       if (index === 0 && checkedUpper === true) {
         let upperLetter = handleUpperCase();
         passwordList.push(upperLetter);
-        console.log("upper", passwordList);
       } else if (index === 1 && checkedLower === true) {
         let lowerLetter = handleLowerCase();
         passwordList.push(lowerLetter);
-        console.log("lower", passwordList);
       } else if (index === 2 && checkedSymbol === true) {
         let symbol = handleSymbols();
         passwordList.push(symbol);
-        console.log("symbols", passwordList);
       } else if (index === 3 && checkedNumber === true) {
         let numb = handleNumbers();
         passwordList.push(numb);
-        console.log("numbers", passwordList);
       }
     }
     setpassword(passwordList.join(""));
@@ -95,32 +131,27 @@ const Generator = () => {
     setcheckedNumber(false);
     setcheckedsymbol(false);
   };
-  console.log(checkedUpper, checkedLower, checkedSymbol, checkedNumber);
 
   const handleUpperCase = () => {
     setcheckedUpper(!checkedUpper);
-    console.log("checkedUpper", checkedUpper);
     const index = getRandomNumber(0, 25);
     return alphabet[index];
   };
 
   const handleLowerCase = () => {
     setcheckedLower(!checkedLower);
-    console.log("checkedLower", checkedLower);
     const index = getRandomNumber(0, 25);
     return alphabet[index].toLocaleLowerCase();
   };
 
   const handleSymbols = () => {
     setcheckedsymbol(!checkedSymbol);
-    console.log("checkedSymbol", checkedSymbol);
     const index = getRandomNumber(0, 8);
     return symbols[index];
   };
 
   const handleNumbers = () => {
     setcheckedNumber(!checkedNumber);
-    console.log("checkedNumber", checkedNumber);
     const index = getRandomNumber(0, 8);
     return numbers[index].toString();
   };
@@ -130,6 +161,7 @@ const Generator = () => {
       <h2>Password Generator</h2>
       <div className="password-results">
         <h3>{password}</h3>
+        <ContentPasteIcon className="copy-icon"></ContentPasteIcon>
       </div>
       <div className="password-param-col">
         <p>Charecter Length</p>
@@ -138,6 +170,7 @@ const Generator = () => {
           size="small"
           onChange={handleInputChange}
           onBlur={handleBlur}
+          color="secondary"
           inputProps={{
             min: 0,
             max: 30,
@@ -147,7 +180,7 @@ const Generator = () => {
       </div>
       <div className="password-col">
         <script src="range-input.js"></script>
-        <Slider
+        <LengthSlider
           value={typeof sliderValue === "number" ? sliderValue : 0}
           min={0}
           max={30}
@@ -195,11 +228,10 @@ const Generator = () => {
             ></input>
             <label>Include Symbols</label>
           </div>
-          <button>Generate Password</button>
-        </form>
-        <div className="password-strength">
           <p>Strength</p>
-        </div>
+          <div className="password-strength"></div>
+          <button className="gen-button">Generate Password</button>
+        </form>
       </div>
     </div>
   );
