@@ -179,7 +179,6 @@ const Generator = () => {
         />
       </div>
       <div className="password-col">
-        <script src="range-input.js"></script>
         <LengthSlider
           value={typeof sliderValue === "number" ? sliderValue : 0}
           min={0}
@@ -188,49 +187,55 @@ const Generator = () => {
           aria-labelledby="input-slider"
         />
         <form onSubmit={handlePassword}>
-          <div>
-            <input
-              type="checkbox"
-              value={checkedUpper}
-              id="upper"
-              onChange={handleUpperCase}
-              checked={checkedUpper}
-            ></input>
-            <label>Include Uppercase Letters</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              value={checkedLower}
-              id="lower"
-              onChange={handleLowerCase}
-              checked={checkedLower}
-            ></input>
-            <label>Include Lowercase Letters</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              value={checkedNumber}
-              id="numbers"
-              onChange={handleNumbers}
-              checked={checkedNumber}
-            ></input>
-            <label>Include Numbers</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              value={checkedSymbol}
-              id="symbols"
-              onChange={handleSymbols}
-              checked={checkedSymbol}
-            ></input>
-            <label>Include Symbols</label>
-          </div>
-          <p>Strength</p>
-          <div className="password-strength"></div>
-          <button className="gen-button">Generate Password</button>
+          <span>
+            <div>
+              <input
+                className="checkbox"
+                type="checkbox"
+                value={checkedUpper}
+                id="upper"
+                onChange={handleUpperCase}
+                checked={checkedUpper}
+              ></input>
+              <label>Include Uppercase Letters</label>
+            </div>
+            <div>
+              <input
+                className="checkbox"
+                type="checkbox"
+                value={checkedLower}
+                id="lower"
+                onChange={handleLowerCase}
+                checked={checkedLower}
+              ></input>
+              <label>Include Lowercase Letters</label>
+            </div>
+            <div>
+              <input
+                className="checkbox"
+                type="checkbox"
+                value={checkedNumber}
+                id="numbers"
+                onChange={handleNumbers}
+                checked={checkedNumber}
+              ></input>
+              <label>Include Numbers</label>
+            </div>
+            <div>
+              <input
+                className="checkbox"
+                type="checkbox"
+                value={checkedSymbol}
+                id="symbols"
+                onChange={handleSymbols}
+                checked={checkedSymbol}
+              ></input>
+              <label>Include Symbols</label>
+            </div>
+            <p>Strength</p>
+            <div className="password-strength"></div>
+            <button className="gen-button">Generate Password</button>
+          </span>
         </form>
       </div>
     </div>
