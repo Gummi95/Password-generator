@@ -2,6 +2,7 @@ import "./Generator.css";
 import React, { useState } from "react";
 import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import ContentPasteIcon from "@mui/icons-material/ContentPaste";
 import Input from "@mui/material/Input";
 
@@ -11,6 +12,7 @@ const Generator = () => {
   const [checkedLower, setcheckedLower] = useState(false);
   const [checkedSymbol, setcheckedsymbol] = useState(false);
   const [checkedNumber, setcheckedNumber] = useState(false);
+  const [copySuccess, setcopySuccess] = useState("");
   const [sliderValue, setSliderValue] = useState(10);
 
   const LengthSlider = styled(Slider)({
@@ -187,8 +189,8 @@ const Generator = () => {
           aria-labelledby="input-slider"
         />
         <form onSubmit={handlePassword}>
-          <span>
-            <div>
+          <fieldset className="form-pass">
+            <label>
               <input
                 className="checkbox"
                 type="checkbox"
@@ -197,9 +199,9 @@ const Generator = () => {
                 onChange={handleUpperCase}
                 checked={checkedUpper}
               ></input>
-              <label>Include Uppercase Letters</label>
-            </div>
-            <div>
+              Include Uppercase Letters
+            </label>
+            <label>
               <input
                 className="checkbox"
                 type="checkbox"
@@ -208,9 +210,9 @@ const Generator = () => {
                 onChange={handleLowerCase}
                 checked={checkedLower}
               ></input>
-              <label>Include Lowercase Letters</label>
-            </div>
-            <div>
+              Include Lowercase Letters
+            </label>
+            <label>
               <input
                 className="checkbox"
                 type="checkbox"
@@ -219,9 +221,9 @@ const Generator = () => {
                 onChange={handleNumbers}
                 checked={checkedNumber}
               ></input>
-              <label>Include Numbers</label>
-            </div>
-            <div>
+              Include Numbers
+            </label>
+            <label>
               <input
                 className="checkbox"
                 type="checkbox"
@@ -230,12 +232,12 @@ const Generator = () => {
                 onChange={handleSymbols}
                 checked={checkedSymbol}
               ></input>
-              <label>Include Symbols</label>
-            </div>
-            <p>Strength</p>
-            <div className="password-strength"></div>
-            <button className="gen-button">Generate Password</button>
-          </span>
+              Include Symbols
+            </label>
+          </fieldset>
+          <p>Strength</p>
+          <div className="password-strength"></div>
+          <button className="gen-button">Generate Password</button>
         </form>
       </div>
     </div>
