@@ -12,7 +12,7 @@ const Generator = () => {
   const [checkedLower, setcheckedLower] = useState(false);
   const [checkedSymbol, setcheckedsymbol] = useState(false);
   const [checkedNumber, setcheckedNumber] = useState(false);
-  const [copySuccess, setcopySuccess] = useState("");
+  const [isCopied, setIsCopied] = useState(false);
   const [sliderValue, setSliderValue] = useState(10);
 
   const LengthSlider = styled(Slider)({
@@ -134,6 +134,13 @@ const Generator = () => {
     setcheckedsymbol(false);
   };
 
+  const handleCopyText = () => {
+    setIsCopied(true);
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 1000);
+  };
+
   const handleUpperCase = () => {
     setcheckedUpper(!checkedUpper);
     const index = getRandomNumber(0, 25);
@@ -163,7 +170,9 @@ const Generator = () => {
       <h2>Password Generator</h2>
       <div className="password-results">
         <h3>{password}</h3>
-        <ContentPasteIcon className="copy-icon"></ContentPasteIcon>
+        <CopyToClipboard text={password} onCopy={handleCopyText}>
+          <ContentPasteIcon className="copy-icon"></ContentPasteIcon>
+        </CopyToClipboard>
       </div>
       <div className="password-param-col">
         <p>Charecter Length</p>
