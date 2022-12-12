@@ -4,7 +4,6 @@ import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import ContentPasteIcon from "@mui/icons-material/ContentPaste";
-import Input from "@mui/material/Input";
 
 const Generator = () => {
   const [password, setpassword] = useState("");
@@ -31,25 +30,6 @@ const Generator = () => {
       },
       "&:before": {
         display: "none",
-      },
-    },
-    "& .MuiSlider-input-slider": {
-      lineHeight: 1.2,
-      fontSize: 12,
-      background: "unset",
-      padding: 0,
-      width: 32,
-      height: 32,
-      borderRadius: "50% 50% 50% 0",
-      backgroundColor: "#52af77",
-      transformOrigin: "bottom left",
-      transform: "translate(50%, -100%) rotate(-45deg) scale(0)",
-      "&:before": { display: "none" },
-      "&.MuiSlider-input-sliderOpen": {
-        transform: "translate(50%, -100%) rotate(-45deg) scale(1)",
-      },
-      "& > *": {
-        transform: "rotate(45deg)",
       },
     },
   });
@@ -176,18 +156,7 @@ const Generator = () => {
       </div>
       <div className="password-param-col">
         <p>Charecter Length</p>
-        <Input
-          value={sliderValue}
-          size="small"
-          onChange={handleInputChange}
-          onBlur={handleBlur}
-          color="secondary"
-          inputProps={{
-            min: 0,
-            max: 30,
-            type: "number",
-          }}
-        />
+        <h3>{sliderValue}</h3>
       </div>
       <div className="password-col">
         <LengthSlider
@@ -244,7 +213,6 @@ const Generator = () => {
               Include Symbols
             </label>
           </fieldset>
-          <p>Strength</p>
           <div className="password-strength"></div>
           <button className="gen-button">Generate Password</button>
         </form>

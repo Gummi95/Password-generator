@@ -7,12 +7,21 @@ h2 {
 }
 .password-param-col {
   display: flex;
+  position: relative;
   background-color: rgba(76, 78, 76, 0.333);
   padding-left: 1rem;
 }
 
 .password-param-col p {
+  font-weight: bolder;
   margin-right: 50%;
+}
+
+.password-param-col h3 {
+  color: #52af77;
+  margin-top: 1.3rem;
+  position: absolute;
+  right: 10px;
 }
 
 .password-results {
@@ -36,6 +45,7 @@ h2 {
   grid-template-rows: repeat(4);
   justify-content: start;
   border: none;
+  font-weight: bolder;
 }
 
 .checkbox:checked {
