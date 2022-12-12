@@ -70,18 +70,6 @@ const Generator = () => {
     setSliderValue(newValue);
   };
 
-  const handleInputChange = (event) => {
-    setSliderValue(event.target.value === "" ? "" : Number(event.target.value));
-  };
-
-  const handleBlur = () => {
-    if (sliderValue < 0) {
-      setSliderValue(0);
-    } else if (sliderValue > 30) {
-      setSliderValue(30);
-    }
-  };
-
   const getRandomNumber = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
