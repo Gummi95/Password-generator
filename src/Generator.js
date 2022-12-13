@@ -81,7 +81,7 @@ const Generator = () => {
     e.preventDefault();
     let passwordList = [];
     if (password === null) {
-      setpassword("");
+      console.log("nothing in window");
     } else {
       while (passwordList.length < sliderValue) {
         const index = getRandomNumber(0, 3);

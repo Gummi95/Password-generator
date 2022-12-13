@@ -1,11 +1,11 @@
-import './App.css';
-import Generator from './Generator'
+import "./App.css";
+import Generator from "./Generator";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Generator/>
+        <Generator />
       </header>
     </div>
   );
