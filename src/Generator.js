@@ -221,14 +221,14 @@ const Generator = () => {
             <div
               className="strength-rating"
               style={{
-                backgroundcolor: password.length >= 5 ? "yellow" : "black",
+                backgroundColor: password.length >= 5 ? "yellow" : "black",
               }}
             ></div>
             <div
               className="strength-rating"
               style={{
-                backgroundcolor:
-                  password.length >= 5 && password.length <= 10
+                backgroundColor:
+                  password.length >= 5 && password.length >= 10
                     ? "yellow"
                     : "black",
               }}
@@ -236,7 +236,7 @@ const Generator = () => {
             <div
               className="strength-rating"
               style={{
-                backgroundcolor:
+                backgroundColor:
                   password.length >= 10 && password.length <= 15
                     ? "yellow"
                     : "black",
@@ -245,7 +245,7 @@ const Generator = () => {
             <div
               className="strength-rating"
               style={{
-                backgroundcolor:
+                backgroundColor:
                   password.length >= 15 && password.length <= 20
                     ? "yellow"
                     : "black",

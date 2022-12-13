@@ -95,15 +95,15 @@ h2 {
 .password-strength-rating {
   font-weight: bolder;
   padding: 5px;
-  margin-left: 9rem;
-  margin-right: 1rem;
+  margin-left: 50%;
+  margin-right: 2%;
 }
 
 .strength-rating {
   height: 100%;
-  width: 0.8rem;
+  width: 0.5rem;
   border-color: white;
-  border-width: 3px;
-  background-color: black;
+  border-width: 1px;
+  border-style: solid;
   margin-right: 0.5rem;
 }
