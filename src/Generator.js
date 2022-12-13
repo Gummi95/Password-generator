@@ -1,5 +1,5 @@
 import "./Generator.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -13,6 +13,7 @@ const Generator = () => {
   const [checkedNumber, setcheckedNumber] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
   const [sliderValue, setSliderValue] = useState(10);
+  const [passwordStrength, setpasswordStrength] = useState("");
 
   const LengthSlider = styled(Slider)({
     color: "#52af77",
@@ -79,27 +80,38 @@ const Generator = () => {
   const handlePassword = (e) => {
     e.preventDefault();
     let passwordList = [];
-    while (passwordList.length < sliderValue) {
-      const index = getRandomNumber(0, 3);
-      if (index === 0 && checkedUpper === true) {
-        let upperLetter = handleUpperCase();
-        passwordList.push(upperLetter);
-      } else if (index === 1 && checkedLower === true) {
-        let lowerLetter = handleLowerCase();
-        passwordList.push(lowerLetter);
-      } else if (index === 2 && checkedSymbol === true) {
-        let symbol = handleSymbols();
-        passwordList.push(symbol);
-      } else if (index === 3 && checkedNumber === true) {
-        let numb = handleNumbers();
-        passwordList.push(numb);
+    if (password === null) {
+      setpassword("");
+    } else {
+      while (passwordList.length < sliderValue) {
+        const index = getRandomNumber(0, 3);
+        if (index === 0 && checkedUpper === true) {
+          let upperLetter = handleUpperCase();
+          passwordList.push(upperLetter);
+        } else if (index === 1 && checkedLower === true) {
+          let lowerLetter = handleLowerCase();
+          passwordList.push(lowerLetter);
+        } else if (index === 2 && checkedSymbol === true) {
+          let symbol = handleSymbols();
+          passwordList.push(symbol);
+        } else if (index === 3 && checkedNumber === true) {
+          let numb = handleNumbers();
+          passwordList.push(numb);
+        }
       }
+      if (password.length <= 5) {
+        setpasswordStrength("Weak");
+      } else if (password.length > 5 && password.length <= 10) {
+        setpasswordStrength("Medium");
+      } else if (password.length > 10) {
+        setpasswordStrength("Strong");
+      }
+      setpassword(passwordList.join(""));
+      setcheckedLower(false);
+      setcheckedUpper(false);
+      setcheckedNumber(false);
+      setcheckedsymbol(false);
     }
-    setpassword(passwordList.join(""));
-    setcheckedLower(false);
-    setcheckedUpper(false);
-    setcheckedNumber(false);
-    setcheckedsymbol(false);
   };
 
   const handleCopyText = () => {
@@ -132,6 +144,8 @@ const Generator = () => {
     const index = getRandomNumber(0, 8);
     return numbers[index].toString();
   };
+
+  useEffect(() => {}, [password]);
 
   return (
     <div className="box">
@@ -201,7 +215,43 @@ const Generator = () => {
               Include Symbols
             </label>
           </fieldset>
-          <div className="password-strength"></div>
+          <div className="password-strength">
+            <div className="password-strength-text">Strength</div>
+            <div className="password-strength-rating">{passwordStrength}</div>
+            <div
+              className="strength-rating"
+              style={{
+                backgroundcolor: password.length >= 5 ? "yellow" : "black",
+              }}
+            ></div>
+            <div
+              className="strength-rating"
+              style={{
+                backgroundcolor:
+                  password.length >= 5 && password.length <= 10
+                    ? "yellow"
+                    : "black",
+              }}
+            ></div>
+            <div
+              className="strength-rating"
+              style={{
+                backgroundcolor:
+                  password.length >= 10 && password.length <= 15
+                    ? "yellow"
+                    : "black",
+              }}
+            ></div>
+            <div
+              className="strength-rating"
+              style={{
+                backgroundcolor:
+                  password.length >= 15 && password.length <= 20
+                    ? "yellow"
+                    : "black",
+              }}
+            ></div>
+          </div>
           <button className="gen-button">Generate Password</button>
         </form>
       </div>

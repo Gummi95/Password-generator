@@ -1,6 +1,6 @@
 .box {
   margin: 0 auto;
-  width: 30%;
+  width: 25%;
 }
 h2 {
   text-align: center;
@@ -39,6 +39,7 @@ h2 {
   background-color: rgba(76, 78, 76, 0.333);
   padding: 0 1rem 0 1rem;
 }
+
 .form-pass {
   display: grid;
   gap: 1rem;
@@ -72,4 +73,37 @@ h2 {
   position: absolute;
   right: 10px;
   top: 5px;
+}
+
+.password-strength {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: 2rem;
+  margin-bottom: 1rem;
+  background-color: rgba(0, 0, 0, 0.333);
+  padding: 0.5rem;
+}
+
+.password-strength-text {
+  color: rgba(182, 182, 182, 0.333);
+  font-weight: bold;
+  padding: 5px;
+}
+
+.password-strength-rating {
+  font-weight: bolder;
+  padding: 5px;
+  margin-left: 9rem;
+  margin-right: 1rem;
+}
+
+.strength-rating {
+  height: 100%;
+  width: 0.8rem;
+  border-color: white;
+  border-width: 3px;
+  background-color: black;
+  margin-right: 0.5rem;
 }
